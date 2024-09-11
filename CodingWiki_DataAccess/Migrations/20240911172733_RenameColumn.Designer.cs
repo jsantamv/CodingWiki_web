@@ -3,6 +3,7 @@ using CodingWiki_DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CodingWiki_DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240911172733_RenameColumn")]
+    partial class RenameColumn
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -42,57 +45,6 @@ namespace CodingWiki_DataAccess.Migrations
                     b.HasKey("BookId");
 
                     b.ToTable("Books");
-
-                    b.HasData(
-                        new
-                        {
-                            BookId = 1,
-                            ISBN = "111U11",
-                            Price = 10.99m,
-                            Title = "THe Hobbit"
-                        },
-                        new
-                        {
-                            BookId = 2,
-                            ISBN = "1S11U11",
-                            Price = 25.99m,
-                            Title = "Summarily"
-                        },
-                        new
-                        {
-                            BookId = 3,
-                            ISBN = "XK12345",
-                            Price = 12.99m,
-                            Title = "The Wanderer's Tale"
-                        },
-                        new
-                        {
-                            BookId = 4,
-                            ISBN = "YZ98765",
-                            Price = 15.49m,
-                            Title = "Mystery of the Night"
-                        },
-                        new
-                        {
-                            BookId = 5,
-                            ISBN = "LM45678",
-                            Price = 8.75m,
-                            Title = "Journey to the Stars"
-                        },
-                        new
-                        {
-                            BookId = 6,
-                            ISBN = "HG54321",
-                            Price = 20.00m,
-                            Title = "The Lost Kingdom"
-                        },
-                        new
-                        {
-                            BookId = 7,
-                            ISBN = "TR65432",
-                            Price = 18.99m,
-                            Title = "Secrets of the Deep"
-                        });
                 });
 
             modelBuilder.Entity("CodingWiki_Model.Models.Genre", b =>
