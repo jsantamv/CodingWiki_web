@@ -17,5 +17,10 @@ namespace CodingWiki_DataAccess.Data
 
         }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Book>().Property(u => u.Price).HasPrecision(10,5);
+        }
+
     }
 }
