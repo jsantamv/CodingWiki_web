@@ -7,13 +7,13 @@ namespace CodingWiki_DataAccess.Data
     {
         
         public DbSet<Book> Books {  get; set; }
-        public DbSet<Genre> Genres {  get; set; }
+        public DbSet<Category> Categories {  get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;Trusted_Connection=True;TrustServerCertificate=True");            
-            optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820@;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820;TrustServerCertificate=True");
             //optionsBuilder.UseSqlServer(connectionString);
 
         }
