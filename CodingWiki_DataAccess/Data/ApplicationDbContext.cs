@@ -8,6 +8,9 @@ namespace CodingWiki_DataAccess.Data
         
         public DbSet<Book> Books {  get; set; }
         public DbSet<Category> Categories {  get; set; }
+        public DbSet<SubCategory> SubCategory {  get; set; }
+        public DbSet<Author> Author {  get; set; }
+        public DbSet<Publisher> Publisher {  get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
