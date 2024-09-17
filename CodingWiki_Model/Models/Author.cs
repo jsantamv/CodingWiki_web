@@ -21,4 +21,6 @@ public class Author
 
     [NotMapped]
     public string? FullName => $"{LastName} {FirstName}".Trim();
+
+    public List<BookAuthorMap> BookAuthorMap { get; set; }
 }
