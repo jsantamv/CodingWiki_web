@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   mssql:
     container_name: sqlserver-db
@@ -11,11 +9,9 @@ services:
     ports:
       - "1433:1433"
     volumes:
-    #- CodingWiki:/sql_data:/var/opt/mssql
-      - ./CodingWiki:/sql_data:/var/opt/mssql
+      - CodingWiki:/var/opt/mssql
     restart: unless-stopped
 
-#esta una forma
-#volumes:
-#  CodingWiki:
-#    external: true
+volumes:
+  CodingWiki:
+    external: true
