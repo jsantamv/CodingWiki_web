@@ -1,6 +1,8 @@
 ﻿using CodingWiki_Model.Models;
 using CodingWiki_Model.Models.FluentModels;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace CodingWiki_DataAccess.Data
 {
@@ -23,9 +25,10 @@ namespace CodingWiki_DataAccess.Data
         {
             //base.OnConfiguring(optionsBuilder);
             //optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;Trusted_Connection=True;TrustServerCertificate=True");            
-            optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820;TrustServerCertificate=True");
             //optionsBuilder.UseSqlServer(connectionString);
-
+            
+            optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820;TrustServerCertificate=True")
+                .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
