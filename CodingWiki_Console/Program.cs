@@ -1,4 +1,5 @@
-﻿using System.Runtime.CompilerServices;
+﻿using System.Numerics;
+using System.Runtime.CompilerServices;
 using CodingWiki_DataAccess.Data;
 using CodingWiki_Model.Models;
 using Microsoft.EntityFrameworkCore;
@@ -14,15 +15,26 @@ Console.WriteLine("Hello, World!");
 //     context.Database.Migrate();
 // }
 
+
 GetAllBooks();
 //AddBooks();
+//UpdateBooks();
+await DeleteBooks();
+
+
 return;
 
 void GetAllBooks()
 {
     using var context = new ApplicationDbContext();
-    var books = context.Books.ToList();
+    // ReSharper disable once EntityFramework.UnsupportedServerSideFunctionCall
+    //var books = context.Books.Where(book => book.Title.Contains("Y"));
+    //Console.WriteLine(books.);
 
+    var books = context.Books
+                            .AsNoTracking()
+                            .OrderBy(b => b.Title).ToList();
+    
     foreach (var book in books)
     {
         Console.WriteLine($"{book.Title} {book.ISBN}");
@@ -35,4 +47,26 @@ void AddBooks()
     using var context = new ApplicationDbContext();
     context.Books.Add(book);
     context.SaveChanges();
+}
+
+
+void UpdateBooks()
+{
+    using var context = new ApplicationDbContext();
+    var bookExists = context.Books.Find(2);
+
+    if (bookExists != null) bookExists.Title = "Professional C# 8";
+
+    context.SaveChanges();
+    
+
+}
+
+
+async void DeleteBooks()
+{
+    await using var context = new ApplicationDbContext();
+    var bookExists = await context.Books.FindAsync(2);
+    if (bookExists != null) context.Books.Remove(bookExists);
+    await context.SaveChangesAsync();
 }
