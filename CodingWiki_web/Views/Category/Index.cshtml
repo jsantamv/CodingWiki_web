@@ -1,0 +1,45 @@
+﻿@model System.Collections.Generic.List<CodingWiki_Model.Models.Category>
+
+@{
+ViewBag.Title = "Lista de Categorías";
+Layout = "_Layout";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<!-- Botón para agregar nueva categoría -->
+<a href="@Url.Action("Create", "Category")" class="btn btn-primary">Agregar Categoría</a>
+
+<table class="table table-striped mt-3">
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model[0].CategoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model[0].CategoryName)
+        </th>
+        <th>Acciones</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var category in Model)
+    {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => category.CategoryId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => category.CategoryName)
+        </td>
+        <td>
+            <!-- Botón para modificar la categoría -->
+            <a href="@Url.Action("Edit", "Category", new { id = category.CategoryId })" class="btn btn-warning">Modificar</a>
+
+            <!-- Botón para eliminar la categoría -->
+            <a href="@Url.Action("Delete", "Category", new { id = category.CategoryId })" class="btn btn-danger">Eliminar</a>
+        </td>
+    </tr>
+    }
+    </tbody>
+</table>

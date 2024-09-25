@@ -18,4 +18,8 @@
     <ProjectReference Include="..\CodingWiki_Model\CodingWiki_Model.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <AdditionalFiles Include="Views\Category\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
