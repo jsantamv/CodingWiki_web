@@ -8,6 +8,9 @@ namespace CodingWiki_DataAccess.Data
 {
     public class ApplicationDbContext: DbContext
     {
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options): base(options)
+        {
+        }
         
         public DbSet<Book> Books {  get; set; }
         public DbSet<Category> Categories {  get; set; }
@@ -21,15 +24,15 @@ namespace CodingWiki_DataAccess.Data
         // public DbSet<Fluent_Publisher> Publisher_fluent {  get; set; }
         public DbSet<Fluent_BookDetail> BookDetail_fluent {  get; set; }
         
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            //base.OnConfiguring(optionsBuilder);
-            //optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;Trusted_Connection=True;TrustServerCertificate=True");            
-            //optionsBuilder.UseSqlServer(connectionString);
-            
-            optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820;TrustServerCertificate=True")
-                .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
-        }
+        // protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        // {
+        //     //base.OnConfiguring(optionsBuilder);
+        //     //optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;Trusted_Connection=True;TrustServerCertificate=True");            
+        //     //optionsBuilder.UseSqlServer(connectionString);
+        //     
+        //     // optionsBuilder.UseSqlServer("Server=localhost;Database=CodingWiki;User ID=sa;Password=Chirripo3820;TrustServerCertificate=True")
+        //     //     .LogTo(Console.WriteLine, new[] {DbLoggerCategory.Database.Command.Name}, LogLevel.Information);
+        // }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
